@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="半導體元件筆記：本質與摻雜半導體、載子濃度、導電率與計算範例。">
+  <title>半導體元件｜Engineering Notes</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="../index.html"><span class="brand-mark">EN</span><span>Engineering <b>Notes</b><small>工程學習筆記</small></span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span><b class="sr-only">切換導覽選單</b></button>
+      <nav class="primary-nav" id="primary-nav" aria-label="主要導覽">
+        <a href="../index.html">首頁</a>
+        <a href="electronics.html">電子學</a>
+        <a class="active" href="semiconductor-devices.html" aria-current="page">半導體元件</a>
+        <a href="circuits.html">電路學</a>
+        <a href="electromagnetics.html">電磁學</a>
+        <a href="resources.html">學習資源</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero page-hero-amber">
+      <div class="container">
+        <p class="eyebrow">04 / SEMICONDUCTOR DEVICES</p>
+        <h1>半導體元件 <span>Semiconductor Devices</span></h1>
+        <p>從材料與摻雜開始，理解電子、電洞如何影響半導體的導電能力。</p>
+        <div class="breadcrumb"><a href="../index.html">首頁</a><span>/</span><span>半導體元件</span></div>
+      </div>
+    </section>
+
+    <section class="section content-section">
+      <div class="container article-layout">
+        <aside class="topic-nav">
+          <p class="topic-nav-title">本頁重點</p>
+          <a href="#intro">半導體材料</a>
+          <a href="#doping">摻雜與 N/P 型</a>
+          <a href="#carriers">載子濃度</a>
+          <a href="#conductivity">導電率</a>
+          <a href="#example">計算範例</a>
+          <a href="#common">常見觀念</a>
+        </aside>
+
+        <div class="article-content">
+          <section class="note-block" id="intro">
+            <p class="eyebrow">FOUNDATION 01</p>
+            <h2>什麼是半導體？</h2>
+            <p>半導體的導電能力介於良導體與絕緣體之間，而且會受到溫度、光照及摻雜等因素影響。常見材料包含矽（Silicon）與鍺（Germanium），其中矽廣泛用於積體電路與各類半導體元件。</p>
+            <div class="concept-callout"><strong>核心觀念</strong><p>半導體的電流主要由兩種可移動載子形成：帶負電的電子（Electron）與可視為帶正電的電洞（Hole）。</p></div>
+            <h3>本質半導體與摻雜半導體</h3>
+            <div class="two-column-info">
+              <div class="mini-info"><span class="mini-label positive">本質半導體</span><h4>未刻意摻雜</h4><p>理想純半導體中，熱激發產生的電子與電洞成對出現，因此電子與電洞濃度相等。</p></div>
+              <div class="mini-info"><span class="mini-label negative">摻雜半導體</span><h4>加入少量雜質</h4><p>加入施體或受體雜質，可讓某一種載子成為多數載子，改變材料的導電特性。</p></div>
+            </div>
+          </section>
+
+          <section class="note-block" id="doping">
+            <p class="eyebrow">DOPING 02</p>
+            <h2>摻雜與 N 型、P 型半導體</h2>
+            <p>矽原子有四個價電子。摻入不同價電子數的雜質，可以改變自由電子或電洞的數量。摻雜不會把材料變成帶整體淨電荷的物體；在一般情況下，材料仍維持近似電中性。</p>
+            <div class="table-wrap"><table><thead><tr><th>類型</th><th>常見摻雜原子</th><th>主要提供的載子</th><th>多數載子</th></tr></thead><tbody>
+              <tr><td>N 型</td><td>磷、砷等五價施體</td><td>額外電子</td><td>電子</td></tr>
+              <tr><td>P 型</td><td>硼等三價受體</td><td>電洞</td><td>電洞</td></tr>
+            </tbody></table></div>
+            <div class="two-column-info">
+              <div class="mini-info"><span class="mini-label positive">N 型</span><h4>電子是多數載子</h4><p>電子濃度通常高於電洞濃度；電洞仍存在，稱為少數載子。</p></div>
+              <div class="mini-info"><span class="mini-label negative">P 型</span><h4>電洞是多數載子</h4><p>電洞濃度通常高於電子濃度；電子仍存在，稱為少數載子。</p></div>
+            </div>
+          </section>
+
+          <section class="note-block" id="carriers">
+            <p class="eyebrow">CARRIER CONCENTRATION 03</p>
+            <h2>多數載子、少數載子與濃度關係</h2>
+            <p>在熱平衡且可使用一般非簡併半導體近似時，電子濃度 n 與電洞濃度 p 會符合質量作用定律（Mass Action Law）：</p>
+            <div class="equation-card"><span class="equation-label">MASS ACTION LAW</span><div class="equation">np = n<sub>i</sub><sup>2</sup></div><p>n：電子濃度（m<sup>−3</sup>）　p：電洞濃度（m<sup>−3</sup>）　n<sub>i</sub>：本質載子濃度（m<sup>−3</sup>）</p></div>
+            <p>本質半導體在熱平衡時 n = p = n<sub>i</sub>。對 N 型材料而言，若已知多數載子電子濃度 n，可用 p = n<sub>i</sub><sup>2</sup> / n 估算少數載子電洞濃度；P 型材料則可用相同關係式處理。</p>
+            <p class="small-note">注意：載子濃度會隨材料、溫度及摻雜條件改變。使用公式前，需確認題目是否處於熱平衡，以及是否符合公式假設。</p>
+          </section>
+
+          <section class="note-block" id="conductivity">
+            <p class="eyebrow">ELECTRICAL CONDUCTIVITY 04</p>
+            <h2>半導體的導電率</h2>
+            <p>電子與電洞在電場作用下都能形成電流。若已知兩種載子的濃度及遷移率，可以估算材料的導電率：</p>
+            <div class="equation-card"><span class="equation-label">CONDUCTIVITY</span><div class="equation">σ = q(nμ<sub>n</sub> + pμ<sub>p</sub>)</div><p>σ：導電率（S/m）　q：基本電荷量（C）　n、p：電子與電洞濃度（m<sup>−3</sup>）</p><p>μ<sub>n</sub>、μ<sub>p</sub>：電子與電洞遷移率（m<sup>2</sup>/(V·s)）</p></div>
+            <p>導電率越大，表示材料在相同電場下越容易形成電流。電阻率（ρ）與導電率互為倒數：</p>
+            <div class="equation-card"><span class="equation-label">RESISTIVITY</span><div class="equation">ρ = 1 / σ</div><p>ρ：電阻率（Ω·m），適用於均勻材料的基本材料參數描述。</p></div>
+          </section>
+
+          <section class="note-block" id="example">
+            <p class="eyebrow">WORKED EXAMPLE 05</p>
+            <h2>導電率計算範例</h2>
+            <p><strong>題目：</strong>某 N 型半導體的電子濃度為 1.0 × 10<sup>21</sup> m<sup>−3</sup>，電子遷移率為 0.14 m<sup>2</sup>/(V·s)。若少數載子的導電貢獻可忽略，估算導電率及電阻率。</p>
+            <h3>已知條件</h3>
+            <ul class="check-list"><li>q = 1.602 × 10<sup>−19</sup> C</li><li>n = 1.0 × 10<sup>21</sup> m<sup>−3</sup></li><li>μ<sub>n</sub> = 0.14 m<sup>2</sup>/(V·s)</li><li>忽略電洞的導電貢獻。</li></ul>
+            <h3>計算步驟</h3>
+            <ol class="number-steps">
+              <li><b>使用近似式：</b>σ ≈ qnμ<sub>n</sub>。</li>
+              <li><b>代入數值：</b>σ ≈ (1.602 × 10<sup>−19</sup>)(1.0 × 10<sup>21</sup>)(0.14)。</li>
+              <li><b>求得導電率：</b>σ ≈ 22.4 S/m。</li>
+              <li><b>計算電阻率：</b>ρ = 1/σ ≈ 1/22.4 ≈ 0.0446 Ω·m。</li>
+            </ol>
+            <div class="concept-callout"><strong>答案</strong><p>估算導電率約為 22.4 S/m，電阻率約為 0.0446 Ω·m。此結果建立在忽略少數載子導電貢獻的題目假設上。</p></div>
+          </section>
+
+          <section class="note-block" id="common">
+            <p class="eyebrow">CHECK YOURSELF</p>
+            <h2>容易混淆的觀念</h2>
+            <ul class="check-list">
+              <li>N 型的「N」代表電子為多數載子，不代表整塊材料帶負電。</li>
+              <li>P 型的多數載子是電洞；電洞是描述電子缺位的等效載子。</li>
+              <li>多數載子與少數載子都存在，只是濃度不同。</li>
+              <li>質量作用定律需確認熱平衡及適用的半導體近似條件。</li>
+              <li>計算導電率時，濃度、遷移率與基本電荷量的單位必須一致。</li>
+            </ul>
+          </section>
+
+          <div class="page-next"><a href="electronics.html"><span>回到相關主題</span><strong>電子學 →</strong></a><a href="circuits.html"><span>下一個主題</span><strong>電路學 →</strong></a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><a class="brand brand-footer" href="../index.html"><span class="brand-mark">EN</span><span>Engineering <b>Notes</b><small>工程學習筆記</small></span></a><p>把每一次複習，累積成自己的知識。</p><span class="copyright">© <span data-year></span> Engineering Notes</span></div></footer>
+</body>
+</html>
